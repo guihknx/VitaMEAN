@@ -6,11 +6,11 @@
 
 Welcome to VitaMEAN, a vital sctructure to MEAN stack development.
 
-## Installation ##
+## Working ##
 
-* Go to path 'cd VitaMEAN'
+* Go to path `cd VitaMEAN`
 * Install dependencies `sudo npm install`
-* Run `nodemon`
+* Just type `nodemon`
 
 ## References ##
 
