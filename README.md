@@ -1,14 +1,14 @@
-# Vitamean #
+# VitaMEAN #
 
-![Vitamean](http://i.imgur.com/ZaxJH8n.png)
+![VitaMEAN](http://i.imgur.com/ZaxJH8n.png)
 
 ## Project Description ##
 
-Welcome to Vitamean, a vital sctructure to MEAN stack development.
+Welcome to VitaMEAN, a vital sctructure to MEAN stack development.
 
 ## Installation ##
 
-* Go to path 'cd Vitamean'
+* Go to path 'cd VitaMEAN'
 * Install dependencies `sudo npm install`
 * Run `nodemon`
 
@@ -21,9 +21,9 @@ Welcome to Vitamean, a vital sctructure to MEAN stack development.
 
 ## Bugs and Sugestions ##
 
-The Vitamean is an **Open Source** project. Anyone can (and should) help us to improve it.
+The VitaMEAN is an **Open Source** project. Anyone can (and should) help us to improve it.
 
-Report bugs or do suggestions using the [Issues](https://github.com/fccoelho7/Vitamean/issues)
+Report bugs or do suggestions using the [Issues](https://github.com/fccoelho7/VitaMEAN/issues)
 
 ## Contribute to the Project ##
 
@@ -35,6 +35,6 @@ More details about how to contribute and send Pull Requests in [GitHub Collabora
 
 ## Copyright and License ##
 
-Copyright 2016 - Vitamean.
+Copyright 2016 - VitaMEAN.
 
 All the JavaScript files and others are licensed with [MIT](http://opensource.org/licenses/MIT) or by the license specified inside the file.
