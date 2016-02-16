@@ -25,9 +25,14 @@ The VitaMEAN is an **Open Source** project. Anyone can (and should) help us to i
 
 Report bugs or do suggestions using the [Issues](https://github.com/fccoelho7/VitaMEAN/issues)
 
-## Contribute to the Project ##
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
 
-To contribute, just click on the **Fork** button, create a *Branch*, improve the code and send it with a **Pull Request**.
+
 
 More details about how to contribute and send Pull Requests in [GitHub Collaborating](https://help.github.com/categories/63/articles).
 
