@@ -9,8 +9,8 @@ Welcome to VitaMEAN, a vital sctructure to MEAN stack development.
 ## Working ##
 
 * Go to path `cd VitaMEAN`
-* Install dependencies `sudo npm install`
-* Just type `nodemon`
+* Install dependencies `npm install`
+* Just type `nodemon app.js`
 
 ## References ##
 
