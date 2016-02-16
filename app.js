@@ -1,0 +1,6 @@
+var server 	= require('./server');
+var port 	= process.env.PORT || 8080;
+
+server.listen(port);
+
+console.log('Magic happens at http://localhost:' + port);
