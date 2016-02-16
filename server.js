@@ -4,123 +4,31 @@ var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var mongoose   = require('mongoose');
 
+// Auth handler
 var jwt    = require('jsonwebtoken');
 var config = require('./config');
-var User   = require('./models/user');
+
+// Routes inclusion
+var users   = require('./routes/users');
+var home   	= require('./routes/home');
+var api   	= require('./routes/api');
+
+
 
 // Configuration
-var port = process.env.PORT || 8080;
 mongoose.connect(config.database);
 app.set('superSecret', config.secret);
 
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-// Routes
-app.get('/', function(req, res) {
-	res.send('Hello! The API is running at http://localhost:' + port + '/api');
-});
+// Set routes
+app.use('/', home);
+app.use('/users', users);
+app.use('/api', api);
 
-var apiRoutes = express.Router();
 
-apiRoutes.post('/auth', function(req, res) {
-
-	User.findOne({
-		login: req.body.login
-	}, function(err, user) {
-		if (err) throw err;
-
-		if (!user) {
-			res.json({ success: false, message: 'Authentication failed. User not found for: ' + req.body.login });
-			return;
-		}
-
-		if (user) {
-
-			if (user.password != req.body.password) {
-				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-				return;
-			}
-
-			var token = jwt.sign(user, app.get('superSecret'), {
-				expireInMinutes: 1440
-			});
-
-			res.json({
-				success: true,
-				message: 'Enjoy your token!',
-				token: token
-			});
-		}
-	});
-});
-
-apiRoutes.use(function(req, res, next) {
-	var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-	if (!token) {
-		return res.status(403).send({
-			success: false,
-			message: 'No token provided.'
-		});
-	}
-
-	jwt.verify(token, app.get('superSecret'), function(err, decoded) {
-		if (err) {
-			return res.json({ success: false, message: 'Failed to authenticate token.' });
-		}
-
-		req.decoded = decoded;
-		next();
-	});
-});
-
-apiRoutes.get('/', function(req, res) {
-	res.json({ message: 'Welcome to the coolest API!' });
-});
-
-apiRoutes.get('/users', function(req, res) {
-	User.find({}, function(err, users) {
-		res.json(users);
-	});
-});
-
-apiRoutes.post('/new-user', function(req, res) {
-
-	if (!(req.body.login | req.body.password | req.body.role)) {
-		res.json({ success: false, message: 'Complete the form!' });
-		return;
-	}
-
-	var user = new User({
-		login: req.body.login,
-		password: req.body.password,
-		name: req.body.name,
-		role: req.body.role
-	});
-
-	user.save(function(err) {
-		if (err) throw err;
-		res.json({ success: true, message: 'User created!' });
-	});
-});
-
-apiRoutes.post('/delete-user', function(req, res) {
-	var userRole = jwt.decode( req.header( 'x-access-token' ) )._doc.role;
-
-	if( userRole != 1 ) {
-		res.json({ success: false, message: "You do not have sufficient permissions to delete some user." });
-	}
-
-	if (!req.body.id) {
-		res.json({ success: false, message: 'Invalid ID' })
-	}
-});
-
-app.use('/api', apiRoutes);
-
-// Start the server
-app.listen(port);
-console.log('Magic happens at http://localhost:' + port);
+module.exports = app;
